@@ -1,0 +1,103 @@
+<!-- src/app/pages/cadastro/cadastro.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Criar Conta</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="form-container">
+    <ion-item>
+      <ion-label position="floating">Nome Completo</ion-label>
+      <ion-input 
+        [(ngModel)]="userData.name" 
+        type="text" 
+        required>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input 
+        [(ngModel)]="userData.email" 
+        type="email" 
+        required>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input 
+        [(ngModel)]="userData.password" 
+        [type]="showPassword ? 'text' : 'password'" 
+        required>
+      </ion-input>
+      <ion-button 
+        fill="clear" 
+        slot="end" 
+        (click)="togglePasswordVisibility()">
+        <ion-icon 
+          [name]="showPassword ? 'eye-off' : 'eye'">
+        </ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Confirmar Senha</ion-label>
+      <ion-input 
+        [(ngModel)]="confirmPassword" 
+        [type]="showPassword ? 'text' : 'password'" 
+        required>
+      </ion-input>
+    </ion-item>
+
+    <!-- Preferências Iniciais -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Preferências</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Tema</ion-label>
+          <ion-select [(ngModel)]="userData.preferences.theme">
+            <ion-select-option value="light">Claro</ion-select-option>
+            <ion-select-option value="dark">Escuro</ion-select-option>
+            <ion-select-option value="auto">Automático</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Visual Padrão</ion-label>
+          <ion-select [(ngModel)]="userData.preferences.defaultView">
+            <ion-select-option value="projects">Projetos</ion-select-option>
+            <ion-select-option value="rpg">RPG</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Sistema de RPG Preferido</ion-label>
+          <ion-select [(ngModel)]="userData.preferences.rpgSystem">
+            <ion-select-option value="dnd5e">D&D 5e</ion-select-option>
+            <ion-select-option value="pathfinder">Pathfinder</ion-select-option>
+            <ion-select-option value="custom">Personalizado</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button 
+      expand="block" 
+      (click)="register()" 
+      [disabled]="loading">
+      <ion-spinner *ngIf="loading"></ion-spinner>
+      <span *ngIf="!loading">Criar Conta</span>
+    </ion-button>
+
+    <div class="login-link">
+      <p>Já tem uma conta? <a routerLink="/login">Faça login</a></p>
+    </div>
+  </div>
+</ion-content>
