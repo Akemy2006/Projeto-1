@@ -1,2 +1,2 @@
 # Projeto-1
-Ainda n sei
+O projeto tem o obijetivo de auxiliar na produção de codigos, funcionando como uma agenda ou como um controle de metas e prasos.
